@@ -347,7 +347,29 @@ body {
 
 /* About */
 
+.about-container {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: auto 1fr;
+    grid-gap: 2rem;
+}
+
 .about__img-item {
+    height: 100%;
     width: 100%;
     display: block;
+    border-radius: 1rem;
 }
+
+@media screen and (min-width: 768px) {
+    
+    .about__img-special {
+        order: -1;
+    }
+
+    .about-container {
+        grid-template-rows: 1fr 1fr;
+    }
+}
+
+/* End of About */
