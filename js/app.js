@@ -21,6 +21,16 @@ function eventListeners() {
     document.querySelector('.video__switch').addEventListener('click', function() {
         ui.videoControl();
     })
+
+    // Submit the form
+    document.querySelector('.drink-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const name = document.querySelector('.input-name').value;
+        const lastName = document.querySelector('.input-lastname').value;
+        const email = document.querySelector('.input-email').value;
+
+        let value = ui.checkEmpty(name, lastName, email);
+    })
 }
 
 function UI() {
@@ -52,4 +62,8 @@ UI.prototype.videoControl = function() {
         videoButton.classList.remove('video__switch-button-slide');
         document.querySelector('.video__item').play();
     }
+}
+
+UI.prototype.checkEmpty() {
+
 }
