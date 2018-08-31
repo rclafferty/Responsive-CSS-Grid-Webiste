@@ -1,1 +1,1 @@
-# Responsive CSS Grid Webiste
+# Responsive CSS Grid Website
