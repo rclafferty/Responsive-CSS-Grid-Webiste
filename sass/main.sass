@@ -347,7 +347,36 @@ body
 
             &:hover
                 color: red
-                
+
+.contact
+    &-container
+        max-width: 90vw
+        margin: 0 auto
+        display: grid
+        grid-row-gap: 1rem
+
+    &-info
+        display: grid
+        justify-content: center
+
+    &-item
+        margin: 1rem 0
+        padding: 0.5rem
+
+        &__icon
+            font-size: 3rem
+            color: $yellow
+
+        &__title
+            text-transform: uppercase
+            margin: 0.5rem 0
+            letter-spacing: 0.25rem
+            font-style: italic
+
+        &__text
+            font-size: 1rem
+            text-transform: uppercase
+            color: $grey
 
 @media screen and (min-width: $smaller-width)
     .work
@@ -414,6 +443,11 @@ body
                 grid-template-columns: 1fr 1fr
                 grid-gap: 1rem
 
+    .contact
+        &-info
+            grid-template-columns: repeat(3, 1fr)
+            order: -1
+
 @media screen and (min-width: $med-width)
     .work
         &-container
@@ -451,6 +485,19 @@ body
             
         &-9
             grid-area: nine
+
+    .contact
+        &-info
+            grid-template-columns: 1fr
+            order: 0
+
+        &-container
+            display: grid
+            grid-template-columns: 2fr 1fr
+            grid-column-gap: 2rem
+
+        &-map
+            align-self: center
 
 @keyframes pulse
     0%
