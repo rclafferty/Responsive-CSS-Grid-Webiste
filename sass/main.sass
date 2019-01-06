@@ -7,7 +7,9 @@ $brown: #382923
 $black: #191919
 $grey: A9B2AC
 
+$med-width: 992px
 $small-width: 768px
+$smaller-width: 576px
 
 $linearTransition: all 0.5s linear
 
@@ -45,6 +47,9 @@ body
             line-height: 1.5rem
             margin-top: 1rem
             color: $grey
+
+        &--left
+            margin-left: 10rem
 
 .grid-container
     max-width: 90vw
@@ -127,7 +132,7 @@ body
     height: 100%
     width: 10rem
     background: rgba(242, 180, 80, 0.9)
-    z-index: 3
+    z-index: 9
 
     width: 0
     overflow: hidden
@@ -168,6 +173,7 @@ body
         animation-name: pulse
         animation-duration: 3s
         animation-iteration-count: infinite
+        z-index: 9
 
 .about
     &-container
@@ -267,6 +273,94 @@ body
     &__thumbnail
         border-radius: 50%
 
+.work
+    &-container
+        max-width: 90vw
+        margin: 2rem auto
+    
+    &-item
+        background: linear-gradient($yellow, $yellow)
+        overflow: hidden
+        position: relative
+
+        &__img
+            width: 100%
+            height: 100%
+            display: block
+            transition: all 0.25s linear
+
+        &__icon
+            position: absolute
+            color: $brightYellow
+            top: 50%
+            left: 50%
+            display: inline-block
+            font-size: 4rem
+            text-decoration: none
+            transition: all 0.5s ease
+            transform: scale(0)
+
+            &:hover
+                color: $brown
+                cursor: pointer
+
+        &:hover &__img
+            opacity: 0.6 // Tutorial has 0.5
+            transform: scale(1.2)
+
+        &:hover &__icon
+            transform: scale(1.3) translate(-50%, -50%)
+
+    &-modal
+        display: none
+
+        &--show
+            position: fixed
+            background: rgba(0, 0, 0, 0.5)
+            top: 0
+            left: 0
+            right: 0
+            bottom: 0
+            z-index: 999
+
+            display: grid
+            justify-content: center
+            align-items: center
+
+        &__item
+            background: url('../img/work-1.jpeg') center/cover
+            height: 70vh
+            width: 80vw
+            border-radius: 2rem
+            border: 0.5rem solid $yellow
+
+        &__close
+            position: fixed
+            font-size: 3rem
+            color: $brightYellow
+            bottom: 5%
+            right: 5%
+            transition: color 0.5s linear
+            cursor: pointer
+            text-decoration: none
+            display: inline-block
+
+            &:hover
+                color: red
+                
+
+@media screen and (min-width: $smaller-width)
+    .work
+        &-container
+            display: grid
+            grid-template-columns: 1fr 1fr
+            grid-gap: 1rem
+
+        &-modal
+            &-item
+                height: 80vh
+                width: 60vw
+
 @media screen and (min-width: $small-width)
     .grid-container
         max-width: 75vw
@@ -319,6 +413,44 @@ body
             &__list
                 grid-template-columns: 1fr 1fr
                 grid-gap: 1rem
+
+@media screen and (min-width: $med-width)
+    .work
+        &-container
+            height: 100vh
+            display: grid
+            grid-template-columns: repeat(4, 1fr)
+            grid-template-rows: repeat(4, 1fr)
+            grid-gap: 1rem
+            grid-template-areas: "one one two three" "one one four four" "five six seven seven" "eight nine seven seven"
+
+    .item
+        &-1
+            grid-area: one
+            
+        &-2
+            grid-area: two
+            
+        &-3
+            grid-area: three
+            
+        &-4
+            grid-area: four
+            
+        &-5
+            grid-area: five
+            
+        &-6
+            grid-area: six
+            
+        &-7
+            grid-area: seven
+            
+        &-8
+            grid-area: eight
+            
+        &-9
+            grid-area: nine
 
 @keyframes pulse
     0%

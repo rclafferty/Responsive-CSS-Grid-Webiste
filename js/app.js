@@ -44,6 +44,19 @@ function eventListeners() {
             ui.showFeedback('Some form values are empty', 'error');
         }
     })
+
+    // Display Modal
+    const links = document.querySelectorAll('.work-item__icon');
+    links.forEach(function(item) {
+        item.addEventListener('click', function(event) {
+            ui.showModal(event);
+        })
+    })
+
+    // Hide Modal
+    document.querySelector('.work-modal__close').addEventListener('click', function() {
+        ui.closeModal();
+    })
 }
 
 function UI() {
@@ -130,6 +143,23 @@ UI.prototype.clearFields = function() {
     document.querySelector('.input-name').value = '';
     document.querySelector('.input-lastname').value = '';
     document.querySelector('.input-email').value = '';
+}
+
+UI.prototype.showModal = function(event) {
+    event.preventDefault();
+    if (event.target.parentElement.classList.contains('work-item__icon'))
+    {
+        let id = event.target.parentElement.dataset.id;
+        const modal = document.querySelector('.work-modal');
+        const modalItem = document.querySelector('.work-modal__item');
+
+        modal.classList.add('work-modal--show');
+        modalItem.style.backgroundImage = `url("img/work-${id}.jpeg")`;
+    }
+}
+
+UI.prototype.closeModal = function() {
+    document.querySelector('.work-modal').classList.remove('work-modal--show');
 }
 
 function Customer(name, lastName, email) {

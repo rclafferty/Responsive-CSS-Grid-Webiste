@@ -36,6 +36,9 @@ body {
   margin-top: 1rem;
   color: A9B2AC;
 }
+.section-title--left {
+  margin-left: 10rem;
+}
 
 .grid-container {
   max-width: 90vw;
@@ -121,7 +124,7 @@ body {
   height: 100%;
   width: 10rem;
   background: rgba(242, 180, 80, 0.9);
-  z-index: 3;
+  z-index: 9;
   width: 0;
   overflow: hidden;
   transition: all 0.5s linear;
@@ -159,6 +162,7 @@ body {
   animation-name: pulse;
   animation-duration: 3s;
   animation-iteration-count: infinite;
+  z-index: 9;
 }
 
 .about-container {
@@ -261,6 +265,91 @@ body {
   border-radius: 50%;
 }
 
+.work-container {
+  max-width: 90vw;
+  margin: 2rem auto;
+}
+.work-item {
+  background: linear-gradient(#f2b450, #f2b450);
+  overflow: hidden;
+  position: relative;
+}
+.work-item__img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  transition: all 0.25s linear;
+}
+.work-item__icon {
+  position: absolute;
+  color: #E3B505;
+  top: 50%;
+  left: 50%;
+  display: inline-block;
+  font-size: 4rem;
+  text-decoration: none;
+  transition: all 0.5s ease;
+  transform: scale(0);
+}
+.work-item__icon:hover {
+  color: #382923;
+  cursor: pointer;
+}
+.work-item:hover .work-item__img {
+  opacity: 0.6;
+  transform: scale(1.2);
+}
+.work-item:hover .work-item__icon {
+  transform: scale(1.3) translate(-50%, -50%);
+}
+.work-modal {
+  display: none;
+}
+.work-modal--show {
+  position: fixed;
+  background: rgba(0, 0, 0, 0.5);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+.work-modal__item {
+  background: url("../img/work-1.jpeg") center/cover;
+  height: 70vh;
+  width: 80vw;
+  border-radius: 2rem;
+  border: 0.5rem solid #f2b450;
+}
+.work-modal__close {
+  position: fixed;
+  font-size: 3rem;
+  color: #E3B505;
+  bottom: 5%;
+  right: 5%;
+  transition: color 0.5s linear;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+}
+.work-modal__close:hover {
+  color: red;
+}
+
+@media screen and (min-width: 576px) {
+  .work-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1rem;
+  }
+  .work-modal-item {
+    height: 80vh;
+    width: 60vw;
+  }
+}
 @media screen and (min-width: 768px) {
   .grid-container {
     max-width: 75vw;
@@ -313,6 +402,44 @@ body {
   .drink-card__list {
     grid-template-columns: 1fr 1fr;
     grid-gap: 1rem;
+  }
+}
+@media screen and (min-width: 992px) {
+  .work-container {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    grid-gap: 1rem;
+    grid-template-areas: "one one two three" "one one four four" "five six seven seven" "eight nine seven seven";
+  }
+
+  .item-1 {
+    grid-area: one;
+  }
+  .item-2 {
+    grid-area: two;
+  }
+  .item-3 {
+    grid-area: three;
+  }
+  .item-4 {
+    grid-area: four;
+  }
+  .item-5 {
+    grid-area: five;
+  }
+  .item-6 {
+    grid-area: six;
+  }
+  .item-7 {
+    grid-area: seven;
+  }
+  .item-8 {
+    grid-area: eight;
+  }
+  .item-9 {
+    grid-area: nine;
   }
 }
 @keyframes pulse {
