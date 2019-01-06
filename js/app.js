@@ -36,6 +36,7 @@ function eventListeners() {
         {
             let customer = new Customer(name, lastName, email);
             ui.addCustomer(customer);
+            ui.clearFields();
             ui.showFeedback('Customer added to the list', 'success');
         }
         else
@@ -123,6 +124,12 @@ UI.prototype.addCustomer = function(customer) {
         <h4 class="person__last-name">${customer.lastName}</h4>
     `;
     document.querySelector('.drink-card__list').appendChild(div);
+}
+
+UI.prototype.clearFields = function() {
+    document.querySelector('.input-name').value = '';
+    document.querySelector('.input-lastname').value = '';
+    document.querySelector('.input-email').value = '';
 }
 
 function Customer(name, lastName, email) {
