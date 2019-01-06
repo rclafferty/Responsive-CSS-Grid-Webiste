@@ -29,7 +29,19 @@ function eventListeners() {
         const lastName = document.querySelector('.input-lastname').value;
         const email = document.querySelector('.input-email').value;
 
-        let value = ui.checkEmpty(name, lastName, email);
+        let value = ui.checkValid(name, lastName, email);
+
+        // console.log(value);
+        if (value)
+        {
+            let customer = new Customer(name, lastName, email);
+            ui.addCustomer(customer);
+            ui.showFeedback('Customer added to the list', 'success');
+        }
+        else
+        {
+            ui.showFeedback('Some form values are empty', 'error');
+        }
     })
 }
 
@@ -64,6 +76,57 @@ UI.prototype.videoControl = function() {
     }
 }
 
-UI.prototype.checkEmpty() {
+// Check for empty values
+UI.prototype.checkValid = function(name, lastName, email) {
+    let result = true;
 
+    if (name === '' || lastName === '' || email === '')
+        result = false;
+    else
+        result = true;
+
+    return result;
+}
+
+UI.prototype.showFeedback = function(message, alert) {
+    console.log("Showing feedback of " + message + " and type " + alert);
+    let targetClass = '.drink-form__feedback';
+    
+    if (alert === 'success' || alert === 'error')
+    {
+        this.showMessage(alert, targetClass, message);
+    }
+}
+
+UI.prototype.showMessage = function(alert, targetClass, message) {
+    let feedback = document.querySelector(targetClass);
+    feedback.classList.add(alert); // Add error class
+    feedback.innerText = message;
+
+    this.removeAlert(alert, targetClass); // Remove error class after 3 seconds
+}
+
+UI.prototype.removeAlert = function(alert, targetClass) {
+    setTimeout(function() {
+        document.querySelector(targetClass).classList.remove(alert);
+    }, 3000); // 3000 ms = 3 sec
+}
+
+UI.prototype.addCustomer = function(customer) {
+    // const images = [1, 2, 3, 4, 5];
+    let random = Math.floor(Math.random() * 5);
+    const div = document.createElement('div');
+    div.classList.add('person');
+    div.innerHTML = `
+        <img src="img/person-${random}.jpeg" alt="person" class="person__thumbnail">
+        <h4 class="person__name">${customer.name}</h4>
+        <h4 class="person__last-name">${customer.lastName}</h4>
+    `;
+    document.querySelector('.drink-card__list').appendChild(div);
+}
+
+function Customer(name, lastName, email) {
+    this.name = name;
+    this.lastName = lastName;
+    this.email = email;
 }
